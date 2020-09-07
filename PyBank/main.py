@@ -11,7 +11,9 @@ def print_analysis(budgetData):
 
     # variables to store the data
     date = str(budgetData[0])
-    profit/loss = float(budgetData[1])
+    profit_loss = float(budgetData[1])
+    greatest_inc = 0
+    greatest_des = 0
 
 ## reading the budget_data.csv file into Python
 with open(pybank_csv, 'r') as csvfile:
@@ -31,16 +33,20 @@ with open(pybank_csv, 'r') as csvfile:
     print(f'Total number of months = {total_months}')
 
     # The net total amount of "Profit/Losses" over the entire period
-    ## net_total = Profit - totalLoss
+    ## net_total = sum(Profits) - sum(Losses)
 
     # The average of the changes in "Profit/Losses" over the entire period
-    ## avg_change = sum of differences month to month/total months
+    ## avg_change = (sum of differences month to month)/total months
 
     # The greatest increase in profits (date and amount) over the entire period
-    greatest_inc =
+    if row > greatest_inc:
+        greatest_inc = row
+        
 
     # The greatest decrease in losses (date and amount) over the entire period
-    greatest_dec =
+    if row < greatest_dec:
+        greatest_dec = row
+        print(f'The greatest decrease in losses was {greatest_dec} and occured in {date}.')
 
 # In addition, your final script should both print the analysis to the terminal and export a text file 
 # with the results.
