@@ -12,8 +12,8 @@ def print_analysis(budgetData):
     # variables to store the data
     date = str(budgetData[0])
     profit_loss = float(budgetData[1])
-    profits = []
-    losses = []
+    
+    
     greatest_inc = 0
     greatest_des = 0
 
@@ -23,7 +23,8 @@ with open(pybank_csv, 'r') as csvfile:
     
     # defining the header
     header = next(budgetData)
-
+    profits = []
+    losses = []
    #=========================================# 
        
     # Your task for PyBank is to create a Python script that analyzes the records to calculate each of the 
@@ -31,21 +32,24 @@ with open(pybank_csv, 'r') as csvfile:
 
     # The total number of months included in the dataset
     ## total months is equal to the number of rows (minus the header)
-    total_months= len(list(budgetData))
-    print(f'Total number of months = {total_months}')
+    # total_months= len(list(budgetData))
+    # print(f'Total number of months = {total_months}')
 
     for row in budgetData:
         # The net total amount of "Profit/Losses" over the entire period
         ## net_total = sum(Profits) - sum(Losses)
-        if row[1] > 0:
+        if float(row[1]) > 0:
+            # print(row)
             profits.append(row[1])
-        elif row[1] < 0:
+        elif float(row[1]) < 0:
+            # print(row)
             losses.append(row[1])
-            
+        netTotal = sum(float(profits)) - sum(float(losses))
+        print(f'The net total of Profit/Losses over the period was {netTotal}.')
 
         # The average of the changes in "Profit/Losses" over the entire period
         ## avg_change = (sum of differences month to month)/total months
-
+        
 
         # The greatest increase in profits (date and amount) over the entire period
         if row > greatest_inc:
