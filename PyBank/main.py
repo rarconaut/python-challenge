@@ -32,12 +32,15 @@ with open(pybank_csv, 'r') as csvfile:
 
     # The total number of months included in the dataset
     ## total months is equal to the number of rows (minus the header)
-    # total_months= len(list(budgetData))
-    # print(f'Total number of months = {total_months}')
+    total_months= len(list(budgetData))
+    print(f'Total number of months = {total_months}')
 
     for row in budgetData:
         # The net total amount of "Profit/Losses" over the entire period
-        ## net_total = sum(Profits) - sum(Losses)
+        ## I need to convert the string numbers read from the csv into floats/integers to use them in the calculations. Python tells me
+        ## that I can't convert an entire list, so I'm converting each value as the function iterates through the rows, and adding them 
+        ## to either the 'profits' or 'losses' lists, according to their appropriate IF statements.
+        ## net_total = sum(profits) - sum(losses)
         if float(row[1]) >= 0:
             # print(row)
             profit = float(row[1])
@@ -48,9 +51,10 @@ with open(pybank_csv, 'r') as csvfile:
             loss = float(row[1])
             losses.append(loss)
 
-        print(profit)
-        print(losses)
-        # netTotal = sum(float(profits)) - sum(float(losses))
+        # print(profit) #This part works correctly, and outputs a list of all profits as floats
+        # print(losses) #This prints a complicated mess, and I can't figure out what the issue is - it works on a set of simple test figures and it's formatted the same way as the 'profits' list. 
+
+        # netTotal = sum(profits) - sum(losses)
         # print(f'The net total of Profit/Losses over the period was {netTotal}.')
 
         # The average of the changes in "Profit/Losses" over the entire period
