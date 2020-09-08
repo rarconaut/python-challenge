@@ -7,15 +7,15 @@ import csv
 pybank_csv = os.path.join("Resources", "budget_data.csv")
 
 # define the function and accept 'budget_data' as its parameter
-# def print_analysis(budgetData):
+def print_analysis(budgetData):
 
-#     # variables to store the data
-#     # date = str(budgetData[0])
-#     # profit_loss = float(budgetData[1])
+    ## variables to store the data
+    date = none
+    #profit_loss = float(budgetData[1])
     
-    
-#     # greatest_inc = 0
-#     # greatest_des = 0
+    net_total = 0.0
+    greatest_inc = 0.0
+    greatest_des = 0.0
 
 ## reading the budget_data.csv file into Python
 with open(pybank_csv, 'r') as csvfile:
@@ -32,15 +32,15 @@ with open(pybank_csv, 'r') as csvfile:
 
     # The total number of months included in the dataset
     ## total months is equal to the number of rows (minus the header)
-    total_months= len(list(budgetData))
-    print(f'Total number of months = {total_months}')
+    total_months = len(list(budgetData))
+   
 
     for row in budgetData:
         # The net total amount of "Profit/Losses" over the entire period
         ## I need to convert the string numbers read from the csv into floats/integers to use them in the calculations. Python tells me
         ## that I can't convert an entire list, so I'm converting each value as the function iterates through the rows, and adding them 
         ## to either the 'profits' or 'losses' lists, according to their appropriate IF statements.
-        ## net_total = sum(profits) - sum(losses)
+        ## Net Total = Profits - Losses
         if float(row[1]) >= 0:
             # print(row)
             profit = float(row[1])
@@ -54,23 +54,39 @@ with open(pybank_csv, 'r') as csvfile:
         # print(profit) #This part works correctly, and outputs a list of all profits as floats
         # print(losses) #This prints a complicated mess, and I can't figure out what the issue is - it works on a set of simple test figures and it's formatted the same way as the 'profits' list. 
 
-        # netTotal = sum(profits) - sum(losses)
-        # print(f'The net total of Profit/Losses over the period was {netTotal}.')
+        net_total = sum(profits) - sum(losses)
+        
 
         # The average of the changes in "Profit/Losses" over the entire period
         ## avg_change = (sum of differences month to month)/total months
-        
+
+
 
         # The greatest increase in profits (date and amount) over the entire period
-        if row > greatest_inc:
-            greatest_inc = row
-            print(f'The greatest increase in profits was {greatest_inc} and occured in {date}.')
+        if float(row[1]) > greatest_inc:
+            greatest_inc = float(row[1])
+            date = row[0]
+            
 
         # The greatest decrease in losses (date and amount) over the entire period
-        if row < greatest_dec:
-            greatest_dec = row
-            print(f'The greatest decrease in losses was {greatest_dec} and occured in {date}.')
+        if float(row[1]) < greatest_dec:
+            greatest_dec = float(row[1])
+            date = row[0]
+           
+#-----------------------------------------#
+## The Statistical Report output
+print(f'Total number of months = {total_months}')
+print(f'The Net Total of Profit/Losses over the period was {net_total}.')
+print(f'The Average Change of Profit/Losses over the period was {avg_change}.')
+print(f'The greatest increase in profits was {greatest_inc} and occured in {date}.')
+print(f'The greatest decrease in losses was {greatest_dec} and occured in {date}.')
 
 # In addition, your final script should both print the analysis to the terminal and export a text file 
 # with the results.
 
+# Set variable for output file
+output_file = os.path.join("analysis", "PyBank_analysis.txt")
+
+#  Open the output file
+with open(output_file, "w") as datafile:
+    writer = csv.writer(datafile)
