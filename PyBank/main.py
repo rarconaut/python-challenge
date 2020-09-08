@@ -7,15 +7,15 @@ import csv
 pybank_csv = os.path.join("Resources", "budget_data.csv")
 
 # define the function and accept 'budget_data' as its parameter
-def print_analysis(budgetData):
+# def print_analysis(budgetData):
 
-    # variables to store the data
-    date = str(budgetData[0])
-    profit_loss = float(budgetData[1])
+#     # variables to store the data
+#     # date = str(budgetData[0])
+#     # profit_loss = float(budgetData[1])
     
     
-    greatest_inc = 0
-    greatest_des = 0
+#     # greatest_inc = 0
+#     # greatest_des = 0
 
 ## reading the budget_data.csv file into Python
 with open(pybank_csv, 'r') as csvfile:
@@ -38,14 +38,20 @@ with open(pybank_csv, 'r') as csvfile:
     for row in budgetData:
         # The net total amount of "Profit/Losses" over the entire period
         ## net_total = sum(Profits) - sum(Losses)
-        if float(row[1]) > 0:
+        if float(row[1]) >= 0:
             # print(row)
-            profits.append(row[1])
+            profit = float(row[1])
+            profits.append(profit)
+
         elif float(row[1]) < 0:
-            # print(row)
-            losses.append(row[1])
-        netTotal = sum(float(profits)) - sum(float(losses))
-        print(f'The net total of Profit/Losses over the period was {netTotal}.')
+            # print(row[1])
+            loss = float(row[1])
+            losses.append(loss)
+
+        print(profit)
+        print(losses)
+        # netTotal = sum(float(profits)) - sum(float(losses))
+        # print(f'The net total of Profit/Losses over the period was {netTotal}.')
 
         # The average of the changes in "Profit/Losses" over the entire period
         ## avg_change = (sum of differences month to month)/total months
