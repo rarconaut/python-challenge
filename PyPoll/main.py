@@ -53,18 +53,23 @@ def Election_analysis(election_results):
 
     # The total number of votes each candidate won
     ## candidate_total = number of rows with candidate's name
-    ## make a separate list for every occurrence of each candidate?
+    ## Make a separate list for storing every occurrence of each candidate?
 
     # The winner of the election based on popular vote.
-    ## either: the individual candidate list with the most entries (i.e. the longest list, using 'len()'), 
-    ## or the most occurrences of a candidate's name in the election_results csv
-    winner = 
-   
+    ## Either: the individual candidate list with the most entries (i.e. the longest list, using 'len()'), 
+    ## or calculate by the most occurrences of a candidate's name in the election_results csv?
+    ## winner = max candidate in candidates
+
+    print("Election Results")
+    print(f"Total Votes:  {total_vote}")
+    print(f"{candidate}:  {vote_percent} ({candidate_total})")
+    print(f"{winner}")
+
 # In addition, your final script should both print the analysis to the terminal and export a text file with the results.
 
-# #  Set variable for output file path
-# output_file = os.path.join("analysis", "PyPoll_analysis.txt")
+#  Set variable for output file path
+output_file = os.path.join("analysis", "PyPoll_analysis.txt")
 
-# #  Open the output file
-# with open(output_file, "w") as datafile:
-#     writer = csv.writer(datafile)
+#  Open the output file
+with open(output_file, "w") as datafile:
+    writer = csv.writer(datafile)
