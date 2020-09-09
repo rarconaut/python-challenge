@@ -13,16 +13,16 @@ with open(pypoll_csv, 'r') as csvfile:
     election_results = csv.reader(csvfile, delimiter=',')
     # defining the header
     header = next(budgetData)
-
+    print(election_results)
     # The total number of votes cast
     total_vote = len(list(election_results))
     total_vote
 
     # A complete list of candidates who received votes
     for row in election_results:
-        if row[2] <> candidates:
+        if str(row[2]) <> candidates:
             candidates.append(row[2])
-        candidates
+        print(candidates)
 
 # Your task is to create a Python script that analyzes the votes and 
 # calculates each of the following:
@@ -46,16 +46,19 @@ def Election_analysis(election_results):
     for row in election_results:
         if row[2] <> candidates:
             candidates.append(row[2])
-        candidates
-        
-    # The percentage of votes each candidate won
+        print(candidates)
 
+    # The percentage of votes each candidate won
+    vote_percent = (candidate_votes / total_vote) * 100
 
     # The total number of votes each candidate won
-
+    ## candidate_total = number of rows with candidate's name
+    ## make a separate list for every occurrence of each candidate?
 
     # The winner of the election based on popular vote.
-    
+    ## either: the individual candidate list with the most entries (i.e. the longest list, using 'len()'), 
+    ## or the most occurrences of a candidate's name in the election_results csv
+    winner = 
    
 # In addition, your final script should both print the analysis to the terminal and export a text file with the results.
 
